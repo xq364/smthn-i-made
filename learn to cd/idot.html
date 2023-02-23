@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Website</title>
+    <style>
+        body {
+            background-color: green;
+            animation-name: slide-in;
+            animation-duration: 1s;
+        }
+        
+        @keyframes slide-in {
+            from {
+                margin-left: 100%;
+                width: 300%;
+            }
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>hi</h1>
+    <p>beans</p>
+    <p>free money</p>
+
+    <table class="boing-table" id="36" border="0" cellspacing="4" cellpadding="22">
+        <!-- table content goes here -->
+    </table>
+
+</body>
+
+</html>
+Changes made: Added missing closing tag for the table element. Removed the extra
+
+<body> tag after the </body> tag, as it is not needed. Removed the incomplete and unnecessary table attributes border, cellspacing, and cellpadding. xq746 can you add a test box where you can add items to the scree that can later be edited or deleted like a
+planner or goal list Sure! Here's an example of how you can add a text box that allows the user to enter items to a list, which can later be edited or deleted: php Copy code
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Website</title>
+</head>
+
+<body>
+    <h1>My Goals</h1>
+
+    <form>
+        <label for="goal">Add a new goal:</label>
+        <input type="text" id="goal" name="goal">
+        <button type="button" onclick="addGoal()">Add</button>
+    </form>
+
+    <ul id="goal-list"></ul>
+
+    <script>
+        let goals = [];
+
+        function addGoal() {
+            const input = document.getElementById('goal');
+            const goal = input.value;
+            if (goal !== '') {
+                goals.push(goal);
+                input.value = '';
+                updateList();
+            }
+        }
+
+        function deleteGoal(index) {
+            goals.splice(index, 1);
+            updateList();
+        }
+
+        function editGoal(index) {
+            const newGoal = prompt('Enter the new goal:');
+            if (newGoal !== null && newGoal !== '') {
+                goals[index] = newGoal;
+                updateList();
+            }
+        }
+        //small problem wth edit goal edit dose not work :(
+        function updateList() {
+            const list = document.getElementById('goal-list');
+            list.innerHTML = '';
+            goals.forEach((goal, index) => {
+                const li = document.createElement('li');
+                li.textContent = goal;
+                const editBtn = document.createElement('button');
+                editBtn.textContent = 'Edit';
+                editBtn.onclick = () => editGoal(index);
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.onclick = () => deleteGoal(index);
+                li.appendChild(editBtn);
+                li.appendChild(deleteBtn);
+                list.appendChild(li);
+            });
+        }
+    </script>
+    //problem could be from the refresh function
+</body>
+
+</html>
